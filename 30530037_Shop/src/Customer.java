@@ -26,7 +26,19 @@ public class Customer extends User{
         orders = new HashMap();
     }
     
+    public Customer(String usernameIn, String passwordIn, String firstName, String lastName, String addressLine1In, String addressLine2In, 
+            String townIn, String postcodeIn)
+    {
+       super(usernameIn, passwordIn, firstName, lastName);
+       addressLine1 = "20 FakeStreet";
+       addressLine2 = "Flat 2/1";
+       town = "Glasgow";
+       postcode = "G1 A23";
+       orders = new HashMap();
+    }
+    
     //Getters
+
     public String getAddressLine1()
     {
         return addressLine1;
@@ -56,26 +68,27 @@ public class Customer extends User{
     {
         return orders;
     }
+    
     //Setters
-    
-    public void setAddressLine1(String AddressLine1In)
+   
+    public void setaddressLine1(String addressLine1In)
     {
-        addressLine1 = AddressLine1In;
+        addressLine1 = addressLine1In;
     }
     
-    public void setAddressLine2(String AddressLine2In)
+    public void setaddressLine2(String addressLine2In)
     {
-        addressLine2 = AddressLine2In;
+        addressLine2 = addressLine2In;
     }
     
-    public void setTown(String TownIn)
+    public void setTown(String townIn)
     {
-        town = TownIn;
+        town = townIn;
     }
     
-    public void setPostcode(String PostcodeIn)
+    public void setPostcode(String postcodeIn)
     {
-        postcode = PostcodeIn;
+        postcode = postcodeIn;
     }
     
     public void setIsRegistered(boolean isRegisteredIn)

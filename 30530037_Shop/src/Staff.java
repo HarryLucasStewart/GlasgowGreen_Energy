@@ -17,6 +17,13 @@ public class Staff extends User{
         salary = 100;
     }
     
+    public Staff(String usernameIn, String passwordIn, String firstName, String lastName, String position, double salary)
+    {
+        super(usernameIn, passwordIn, firstName, lastName);
+        position = "Manager";
+        salary = 100;
+    }
+    
     //Getters
     
     public String getPosition()

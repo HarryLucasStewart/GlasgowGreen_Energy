@@ -1,3 +1,5 @@
+
+
 /**
  *
  * @author 30530037
@@ -76,4 +78,9 @@ public class User {
     {
         lastName = lastNameIn;
     }
-}
+
+    //@Override
+    //public SourceVersion getSupportedSourceVersion() {
+        //return SourceVersion.RELEASE_24;
+    }
+/*}*/
