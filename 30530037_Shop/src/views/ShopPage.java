@@ -4,6 +4,14 @@
  */
 package views;
 
+import models.Product;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import models.Customer;
+import models.DBManager;
+import models.Order;
+
+
 /**
  *
  * @author 30530037
@@ -11,12 +19,23 @@ package views;
 public class ShopPage extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ShopPage.class.getName());
-
+    
+    private ArrayList<Product> allProducts;
+    private Order currentOrder;
+    private Customer loggedInCustomer;
+  
     /**
      * Creates new form ShopPage
      */
-    public ShopPage() {
-        initComponents();
+    public ShopPage(Customer cs, Order o)
+    {
+        loggedInCustomer = cs;
+        currentOrder = o;
+        
+         DBManager db = new DBManager();
+         allProducts = db.loadProduct();
+        
+         initComponents();
     }
 
     /**
@@ -48,9 +67,14 @@ public class ShopPage extends javax.swing.JFrame {
         jLabel1.setText("CATEGORIES");
 
         lstCategories.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Clothing", "Footwear" };
+            String[] strings = { "HeatPump", "SolarPanel" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
+        });
+        lstCategories.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstCategoriesValueChanged(evt);
+            }
         });
         jScrollPane1.setViewportView(lstCategories);
 
@@ -129,6 +153,23 @@ public class ShopPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lstCategoriesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstCategoriesValueChanged
+        
+        String selectedProductCategory = lstCategories.getSelectedValue();
+        
+        DefaultListModel productsModel = new DefaultListModel();
+        
+        for(Product a : allProducts)
+        {
+            if(a.getClass().getName().equals("models." + selectedProductCategory))
+            {
+                productsModel.addElement(a);
+            }
+        }
+        
+        lstCategories.setModel(productsModel);
+    }//GEN-LAST:event_lstCategoriesValueChanged
+
     /**
      * @param args the command line arguments
      */
@@ -151,7 +192,7 @@ public class ShopPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ShopPage().setVisible(true));
+      //  java.awt.EventQueue.invokeLater(() -> new ShopPage().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

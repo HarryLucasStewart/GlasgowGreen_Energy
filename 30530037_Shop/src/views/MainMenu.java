@@ -4,6 +4,9 @@
  */
 package views;
 
+import models.Customer;
+import models.Order;
+
 /**
  *
  * @author 30530037
@@ -16,6 +19,9 @@ public class MainMenu extends javax.swing.JFrame {
      * Creates new form MainMenu
      */
     public MainMenu() {
+        
+        Customer cs = new Customer(); 
+        Order o = new Order(); 
         initComponents();
     }
 
@@ -52,6 +58,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         btnToViewProducts.setText("VIEW PRODUCTS");
+        btnToViewProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnToViewProductsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +111,13 @@ public class MainMenu extends javax.swing.JFrame {
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnToStaffLoginActionPerformed
+
+    private void btnToViewProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnToViewProductsActionPerformed
+        
+        ShopPage home = new ShopPage(Customer cs,Order o);
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnToViewProductsActionPerformed
 
     /**
      * @param args the command line arguments

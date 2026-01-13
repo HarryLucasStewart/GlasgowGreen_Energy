@@ -4,6 +4,9 @@
  */
 package views;
 
+import models.Customer;
+import models.Order;
+
 /**
  *
  * @author 30530037
@@ -11,12 +14,19 @@ package views;
 public class CustomerHome extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CustomerHome.class.getName());
+    
+    private Customer loggedInCustomer;
+    private Order currentOrder;
+  
 
     /**
      * Creates new form CustomerHome
      */
-    public CustomerHome() {
+    public CustomerHome(Customer cs, Order o) {
         initComponents();
+        
+        loggedInCustomer = cs;
+        currentOrder = o;
     }
 
     /**
@@ -37,6 +47,11 @@ public class CustomerHome extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnBrowseProducts.setText("BROWSE PRODUCTS");
+        btnBrowseProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrowseProductsActionPerformed(evt);
+            }
+        });
 
         btnViewOrders.setText("VIEW MY ORDERS");
 
@@ -91,6 +106,13 @@ public class CustomerHome extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
+    private void btnBrowseProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseProductsActionPerformed
+        
+        ShopPage home = new ShopPage(loggedInCustomer, currentOrder);
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBrowseProductsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -113,7 +135,7 @@ public class CustomerHome extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new CustomerHome().setVisible(true));
+        //java.awt.EventQueue.invokeLater(() -> new CustomerHome().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
